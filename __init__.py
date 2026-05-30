@@ -3,13 +3,15 @@ from .m4_text_saver import SaveTextNode
 from .m4_prompt_node import M4PromptNode
 from .m4_resolution_preset import M4ResolutionPresetNode
 from .m4_texture_generator import M4TextureGeneratorNode
+from .m4_wildcard_loader import M4WildcardLoader
 
 NODE_CLASS_MAPPINGS = {
     "SequenceImageLoader": SequenceImageLoader,
     "SaveTextNode": SaveTextNode,
     "M4PromptNode": M4PromptNode,
     "M4ResolutionPresetNode": M4ResolutionPresetNode,
-    "M4TextureGeneratorNode": M4TextureGeneratorNode
+    "M4TextureGeneratorNode": M4TextureGeneratorNode,
+    "M4WildcardLoader": M4WildcardLoader
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -17,7 +19,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "SaveTextNode": "M4 Save Text",
     "M4PromptNode": "M4 Prompt Node",
     "M4ResolutionPresetNode": "M4 Resolution Preset Node",
-    "M4TextureGeneratorNode": "M4 Texture Generator"
+    "M4TextureGeneratorNode": "M4 Texture Generator",
+    "M4WildcardLoader": "M4 Wildcard Loader"
 }
 
 WEB_DIRECTORY = "./web"

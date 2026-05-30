@@ -85,5 +85,37 @@ ComfyUI用のカスタムノード群です。主にLora学習のキャプショ
 - **出力項目**:
   - `IMAGE`: 生成されたRGB画像。
 
+### 6. M4 Wildcard Loader
+YAML形式のワイルドカードファイルからテキストデータを読み込み、ランダム、シーケンシャル（順番）、または固定インデックスで1項目を抽出して出力するノードです。
+
+- **カテゴリ**: `M4/text`
+- **入力項目**:
+  - `wildcard_dir` (STRING): ワイルドカードファイルを保存しているフォルダの絶対パス。
+  - `wildcard_selector` (COMBO): フォルダ内のYAMLファイルから自動スキャンされたワイルドカードキー（例: `sample/gravure_pose/basic_pose` や上位の `sample/gravure_pose` など）を選択します。
+  - `preview_text` (STRING, 複数行): `wildcard_selector` で選択されたワイルドカードに含まれるテキスト候補の一覧が自動的に改行区切りでプレビュー表示されます（読み取り専用）。
+  - `mode` (COMBO): テキストデータの選択モードを選択します。
+    - `random`: `seed` に基づいた再現性のあるランダムな項目抽出。
+    - `sequential`: 実行（Queue Prompt）ごとに上から順に抽出し、最後まで到達すると最初に戻ります（別のワイルドカードキーを選択した場合はインデックスが自動リセットされます）。
+    - `fixed`: `fixed_index` で指定されたインデックスの項目を抽出します。
+  - `fixed_index` (INT): `fixed` モードの際に抽出する項目のインデックス（0始まり）。
+  - `seed` (INT): `random` モードの際に使用する乱数シード。シード値を固定すると同じ項目が抽出され、変更すると異なる項目がランダム抽出されます。
+- **出力項目**:
+  - `text` (STRING): 選択されたテキストデータを出力します。
+
+#### ワイルドカードYAMLの形式について
+以下のような階層構造（辞書およびリスト）を持つ `.yaml` / `.yml` 形式に対応しています。
+
+```yaml
+gravure_pose:
+  basic_pose:
+    - standing, cowboy shot, looking at viewer
+    - standing, cowboy shot, arms behind head
+  lying_pose:
+    - lying on stomach, looking at viewer
+    - lying on side, looking at viewer
+```
+
+本ノードでは、最下層のリスト項目（例: `basic_pose`）だけでなく、中間カテゴリ（例: `gravure_pose`）やファイル名レベルの上位キーを選択することも可能です。上位のカテゴリを選択した場合は、その配下にあるすべてのリスト項目が自動的に結合（マージ）されて抽出対象となります。
+
 ## ライセンス
 このプロジェクトのライセンスについては `LICENSE` ファイルをご参照ください。
