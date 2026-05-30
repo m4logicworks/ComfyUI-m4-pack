@@ -68,5 +68,22 @@ ComfyUI用のカスタムノード群です。主にLora学習のキャプショ
   - `height` (INT): 出力する高さのピクセル数。
   - `batch_size` (INT): 設定されたバッチサイズ。
 
+### 5. M4 Texture Generator
+画像生成（i2iのノイズインジェクションなど）にベース素材として使用できる様々なテクスチャやノイズ画像を生成するノードです。
+
+- **カテゴリ**: `M4/image`
+- **入力項目**:
+  - `width` (INT): 生成するテクスチャの幅（デフォルト 1024）。
+  - `height` (INT): 生成するテクスチャの高さ（デフォルト 1024）。
+  - `batch_size` (INT): 生成するバッチサイズ（デフォルト 1）。
+  - `texture_type` (COMBO): 生成するテクスチャの種類（12種類）。
+    - `White Noise`, `Gaussian Noise`, `Film Grain`, `Perlin Noise (Smooth)`, `Fractal Noise (High Detail)`, `Canvas Texture`, `Paper Texture`, `Horizontal Brush`, `Vertical Brush`, `Diagonal Hatching`, `Vignette`, `Color Cloud`
+  - `scale` (FLOAT): ノイズやテクスチャのスケール値（デフォルト 1.0）。
+  - `strength` (FLOAT): ベースカラーに対するテクスチャ効果の適用強度。0.0で単色、1.0でテクスチャ全開となります（デフォルト 0.5）。
+  - `color_preset` (COMBO): ベースとなる背景色のプリセット（White, Black, Gray, Red, Green, Blue, Sepia, Warm, Cool, Custom HEX）。
+  - `custom_hex` (STRING): `color_preset` で `Custom HEX` を選んだ際に反映される任意のHEXカラーコード（デフォルト `#FFFFFF`）。
+- **出力項目**:
+  - `IMAGE`: 生成されたRGB画像。
+
 ## ライセンス
 このプロジェクトのライセンスについては `LICENSE` ファイルをご参照ください。
