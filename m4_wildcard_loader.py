@@ -91,6 +91,12 @@ class M4WildcardLoader:
             }
         }
 
+    @classmethod
+    def VALIDATE_INPUTS(s, **kwargs):
+        # ドロップダウンの選択肢がフロントエンド側で動的に変更されるため、
+        # サーバー側の静的リストチェックを常にパスさせます
+        return True
+
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("text",)
     FUNCTION = "load_wildcard"

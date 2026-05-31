@@ -29,6 +29,11 @@ class M4PromptNode:
             }
         }
 
+    @classmethod
+    def VALIDATE_INPUTS(s, **kwargs):
+        # JSONから読み込まれた動的なキーに対応するため、静的バリデーションを無効化します
+        return True
+
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("text",)
     FUNCTION = "process_text"
