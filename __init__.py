@@ -4,6 +4,7 @@ from .m4_prompt_node import M4PromptNode
 from .m4_resolution_preset import M4ResolutionPresetNode
 from .m4_texture_generator import M4TextureGeneratorNode
 from .m4_wildcard_loader import M4WildcardLoader
+from .m4_image_prompt_loader import M4FolderImagePromptLoader
 
 NODE_CLASS_MAPPINGS = {
     "SequenceImageLoader": SequenceImageLoader,
@@ -11,7 +12,8 @@ NODE_CLASS_MAPPINGS = {
     "M4PromptNode": M4PromptNode,
     "M4ResolutionPresetNode": M4ResolutionPresetNode,
     "M4TextureGeneratorNode": M4TextureGeneratorNode,
-    "M4WildcardLoader": M4WildcardLoader
+    "M4WildcardLoader": M4WildcardLoader,
+    "M4FolderImagePromptLoader": M4FolderImagePromptLoader
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -20,7 +22,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "M4PromptNode": "M4 Prompt Node",
     "M4ResolutionPresetNode": "M4 Resolution Preset Node",
     "M4TextureGeneratorNode": "M4 Texture Generator",
-    "M4WildcardLoader": "M4 Wildcard Loader"
+    "M4WildcardLoader": "M4 Wildcard Loader",
+    "M4FolderImagePromptLoader": "M4 Folder Image Prompt Loader"
 }
 
 WEB_DIRECTORY = "./web"
