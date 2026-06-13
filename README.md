@@ -119,5 +119,25 @@ gravure_pose:
 
 This node allows you to select not only the leaf list items (e.g., `basic_pose`) but also intermediate categories (e.g., `gravure_pose`) or file-level root keys. Selecting a higher-level category will merge all list items under it.
 
+### 7. M4 Folder Image Prompt Loader
+Loads images from a specified folder and outputs them along with the content of a matching text file (`.txt`) with the same name. It is ideal for synchronized input image and prompt control in workflows like Image-to-Video (I2V).
+Features real-time interactive preview of both images and prompt texts directly on the node.
+
+- **Category**: `M4/loaders`
+- **Inputs**:
+  - `folder_path` (STRING): Absolute path to the folder containing images.
+  - `mode` (COMBO): Image loading mode:
+    - `increment`: Loads images and matching text sequentially on each execution (Queue Prompt), starting from the image chosen in `image_select`, moving in alphabetical order, and wrapping back to the start.
+    - `fixed`: Outputs a specific image offset from the starting image by `fixed_index`.
+    - `random`: Loads a random image from the folder based on the `seed`.
+  - `image_select` (COMBO): Dropdown list of images in the folder (automatically updated based on `folder_path`).
+  - `fixed_index` (INT): Index offset for `fixed` mode (0-indexed).
+  - `seed` (INT): Random seed for `random` mode.
+- **Outputs**:
+  - `IMAGE`: Loaded image data.
+  - `STRING`: Content of the text file with the same name (empty string if not found).
+  - `WIDTH` (INT): Image width.
+  - `HEIGHT` (INT): Image height.
+
 ## License
 See the `LICENSE` file for details.
