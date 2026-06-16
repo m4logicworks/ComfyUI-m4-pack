@@ -83,7 +83,6 @@ class M4FolderImagePromptLoader:
                 "folder_path": ("STRING", {"default": "", "multiline": False}),
                 "mode": (["increment", "fixed", "random"], {"default": "increment"}),
                 "image_select": ([""], {}),
-                "fixed_index": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff, "step": 1}),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
             },
             "hidden": {
@@ -101,7 +100,7 @@ class M4FolderImagePromptLoader:
     FUNCTION = "load_image_prompt"
     CATEGORY = "M4/loaders"
 
-    def load_image_prompt(self, folder_path, mode, image_select, fixed_index, seed, unique_id=None):
+    def load_image_prompt(self, folder_path, mode, image_select, seed, fixed_index=0, unique_id=None):
         if not folder_path or not os.path.isdir(folder_path):
             raise ValueError(f"Folder path does not exist: {folder_path}")
 
@@ -125,7 +124,7 @@ class M4FolderImagePromptLoader:
             state = {"last_folder": folder_path, "last_image": image_select, "offset": 0}
 
         if mode == "fixed":
-            target_idx = (start_idx + fixed_index) % len(files)
+            target_idx = start_idx
             
         elif mode == "random":
             # seedベースのランダム
